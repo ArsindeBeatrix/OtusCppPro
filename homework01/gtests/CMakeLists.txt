@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(googletest)
 
 
 set(COMMON_SRCS
-    "../checkresult.cpp"
+    "../lib.cpp"
 )
 
 add_executable(tests test_main.cpp ${COMMON_SRCS})
