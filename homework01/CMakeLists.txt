@@ -43,8 +43,6 @@ install(TARGETS helloworld_cli RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 
-set(CPACK_PACKAGE_NAME "OtusCppPro")
-
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
 set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
 set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
@@ -56,14 +54,3 @@ include(CPack)
 enable_testing()
 
 add_subdirectory(gtests)
-
-
-
-
-# Имя выходного пакета OtusCppPro-0.0.6-Linux.deb 
-# ( https://github.com/ArsindeBeatrix/OtusCppPro/actions/runs/7603362028/job/20705006757#step:7:19 ), 
-# а взять релиз сейчас пытаемся из ./helloworld-0.0.6-Linux.deb 
-# ( https://github.com/ArsindeBeatrix/OtusCppPro/actions/runs/7603362028/job/20705006757#step:9:10 ). 
-# Имя выходного пакеа по умолчанию соответствует имени проекта 
-# https://cmake.org/cmake/help/latest/module/CPack.html#variables-common-to-all-cpack-generators , 
-# потюнить можно переменной CPACK_PACKAGE_NAME
