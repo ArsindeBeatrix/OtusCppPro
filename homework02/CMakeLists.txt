@@ -6,6 +6,7 @@ project(OtusCppPro)
 add_executable(
     hw_02
     main.cpp
+    address.cpp
 )
 
 # параметры проекта
