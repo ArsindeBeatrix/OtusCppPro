@@ -20,14 +20,14 @@ string_vector split(const std::string &str, char d);
 class address {
 public:
   bool operator>(address &right);
-  // friend bool swap(address &left, address &right) {
-  //   if (left.ip_array[0] > right.ip_array[0]) {
-  //     /* code */
-  //   }
-  // }
+  bool operator<(address &right);
+
+  // bool operator==(address &right);
   int addr_index;
   int ip_array[4];
 };
+
+void print_reverse(std::vector<address> &s_ip);
 
 void setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
            int index);
@@ -35,5 +35,10 @@ void setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
 void print_ip(address &ip);
 
 void merge_sort(std::vector<address> &arr, int left_index, size_t size);
+
+std::vector<adr::address> filter(std::vector<address> &arr, int first);
+std::vector<adr::address> filter(std::vector<address> &arr, int first,
+                                 int second);
+std::vector<adr::address> filter_any(std::vector<address> &arr, int first);
 
 } // namespace adr

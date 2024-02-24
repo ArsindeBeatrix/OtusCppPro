@@ -29,7 +29,8 @@ void merge(std::vector<adr::address> &arr, int left, int right_end_index,
     int k = i;
 
     for (auto j = i + 1; j < right_end_index; ++j) {
-      if (arr[k] > arr[j]) {
+      if (arr[k] < arr[j]) {
+
         std::swap(arr[k], arr[j]);
         int tmp = arr[k].addr_index;
         arr[k].addr_index = arr[j].addr_index;
@@ -54,6 +55,56 @@ void adr::merge_sort(std::vector<address> &arr, int l_index, size_t size) {
     merge_sort(arr, r_index, right_size);
     merge(arr, l_index, end_index, left_size);
   }
+}
+
+std::vector<adr::address> adr::filter(std::vector<address> &s_ip, int first) {
+  std::vector<adr::address> tmp;
+
+  for (size_t i = 0; i <= s_ip.back().addr_index; ++i) {
+    if (s_ip[i].ip_array[0] == first) {
+      tmp.push_back(s_ip[i]);
+    }
+  }
+  return tmp;
+}
+
+std::vector<adr::address> adr::filter(std::vector<address> &s_ip, int first,
+                                      int second) {
+  std::vector<adr::address> tmp;
+
+  for (size_t i = 0; i <= s_ip.back().addr_index; ++i) {
+    if (s_ip[i].ip_array[0] == first && s_ip[i].ip_array[1] == second) {
+      tmp.push_back(s_ip[i]);
+    }
+  }
+  return tmp;
+}
+
+std::vector<adr::address> adr::filter_any(std::vector<address> &s_ip,
+                                          int first) {
+  std::vector<adr::address> tmp;
+
+  for (size_t i = 0; i <= s_ip.back().addr_index; ++i) {
+    if (s_ip[i].ip_array[0] == first || s_ip[i].ip_array[1] == first ||
+        s_ip[i].ip_array[2] == first || s_ip[i].ip_array[3] == first) {
+      tmp.push_back(s_ip[i]);
+    }
+  }
+  return tmp;
+}
+
+void adr::print_reverse(std::vector<address> &s_ip) {
+  auto start = s_ip.back().addr_index;
+  auto finish = s_ip.front().addr_index - 1;
+  adr::address &tmp = s_ip.front();
+
+  std::cout << s_ip.back().addr_index << ":" << s_ip.front().addr_index
+            << std::endl;
+  for (size_t i = start; i > 0; --i) {
+    adr::print_ip(s_ip[i]);
+  }
+
+  adr::print_ip(s_ip.front());
 }
 
 void adr::setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
@@ -107,3 +158,40 @@ bool adr::address::operator>(address &right) {
 
   return false;
 }
+
+bool adr::address::operator<(address &right) {
+
+  if (this->ip_array[0] < right.ip_array[0]) {
+    return true;
+  }
+  if (this->ip_array[0] == right.ip_array[0] &&
+      this->ip_array[1] < right.ip_array[1]) {
+    return true;
+  }
+  if (this->ip_array[0] == right.ip_array[0] &&
+      this->ip_array[1] == right.ip_array[1] &&
+      this->ip_array[2] < right.ip_array[2]) {
+    return true;
+  }
+  if (this->ip_array[0] == right.ip_array[0] &&
+      this->ip_array[1] == right.ip_array[1] &&
+      this->ip_array[2] == right.ip_array[2] &&
+      this->ip_array[3] < right.ip_array[3]) {
+    return true;
+  }
+
+  return false;
+}
+
+// bool adr::address::operator==(address &right) {
+
+//   if (this->addr_index == right.addr_index &&
+//       this->ip_array[0] == right.ip_array[0] &&
+//       this->ip_array[1] == right.ip_array[1] &&
+//       this->ip_array[2] == right.ip_array[2] &&
+//       this->ip_array[3] == right.ip_array[3]) {
+//     return true;
+//   }
+
+//   return false;
+// }
