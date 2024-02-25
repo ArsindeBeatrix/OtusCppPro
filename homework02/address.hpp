@@ -21,13 +21,9 @@ class address {
 public:
   bool operator>(address &right);
   bool operator<(address &right);
-
-  // bool operator==(address &right);
   int addr_index;
   int ip_array[4];
 };
-
-void print_reverse(std::vector<address> &s_ip);
 
 void setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
            int index);

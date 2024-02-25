@@ -57,6 +57,12 @@ void adr::merge_sort(std::vector<address> &arr, int l_index, size_t size) {
   }
 }
 
+void print_ip_vector(std::vector<adr::address> &ip_vector) {
+  for (auto ip : ip_vector) {
+    adr::print_ip(ip);
+  }
+}
+
 std::vector<adr::address> adr::filter(std::vector<address> &s_ip, int first) {
   std::vector<adr::address> tmp;
 
@@ -65,6 +71,7 @@ std::vector<adr::address> adr::filter(std::vector<address> &s_ip, int first) {
       tmp.push_back(s_ip[i]);
     }
   }
+  print_ip_vector(tmp);
   return tmp;
 }
 
@@ -77,6 +84,7 @@ std::vector<adr::address> adr::filter(std::vector<address> &s_ip, int first,
       tmp.push_back(s_ip[i]);
     }
   }
+  print_ip_vector(tmp);
   return tmp;
 }
 
@@ -90,21 +98,8 @@ std::vector<adr::address> adr::filter_any(std::vector<address> &s_ip,
       tmp.push_back(s_ip[i]);
     }
   }
+  print_ip_vector(tmp);
   return tmp;
-}
-
-void adr::print_reverse(std::vector<address> &s_ip) {
-  auto start = s_ip.back().addr_index;
-  auto finish = s_ip.front().addr_index - 1;
-  adr::address &tmp = s_ip.front();
-
-  std::cout << s_ip.back().addr_index << ":" << s_ip.front().addr_index
-            << std::endl;
-  for (size_t i = start; i > 0; --i) {
-    adr::print_ip(s_ip[i]);
-  }
-
-  adr::print_ip(s_ip.front());
 }
 
 void adr::setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
@@ -125,7 +120,6 @@ void adr::print_ip(address &ip) {
 
   int n = 4;
 
-  std::cout << ip.addr_index << ": ";
   for (int i = 0; i < n; ++i) {
     std::cout << static_cast<int>(ip.ip_array[i]);
     if (i != n - 1) {
@@ -182,16 +176,3 @@ bool adr::address::operator<(address &right) {
 
   return false;
 }
-
-// bool adr::address::operator==(address &right) {
-
-//   if (this->addr_index == right.addr_index &&
-//       this->ip_array[0] == right.ip_array[0] &&
-//       this->ip_array[1] == right.ip_array[1] &&
-//       this->ip_array[2] == right.ip_array[2] &&
-//       this->ip_array[3] == right.ip_array[3]) {
-//     return true;
-//   }
-
-//   return false;
-// }
