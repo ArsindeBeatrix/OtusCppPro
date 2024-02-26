@@ -18,7 +18,6 @@ int main(int argc, char const *argv[]) {
     }
     in.close();
 
-    // TODO reverse lexicographically sort
     std::cout << "------- Reverse lexicographically sort -----\n";
     const size_t ip_pool_size = ip_pool.size();
 
