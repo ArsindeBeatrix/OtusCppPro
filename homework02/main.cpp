@@ -12,8 +12,8 @@ int main(int argc, char const *argv[]) {
 
     if (in.is_open()) {
       while (std::getline(in, line)) {
-        auto v = adr::split(line, '\t');
-        ip_pool.push_back(adr::split(v.at(0), '.'));
+        auto v = std::move(adr::split(line, '\t'));
+        ip_pool.push_back(std::move(adr::split(v.at(0), '.')));
       }
     }
     in.close();
