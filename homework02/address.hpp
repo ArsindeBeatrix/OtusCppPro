@@ -10,31 +10,26 @@
 
 namespace adr {
 
-typedef std::vector<std::string> string_vector;
-using adr::string_vector;
-typedef std::string::size_type str_size;
-using adr::str_size;
+using string_vector = std::vector<std::string>;
+using str_size = std::string::size_type;
 
 string_vector split(const std::string &str, char d);
 
-class address {
-public:
-  bool operator>(address &right);
+struct address {
   bool operator<(address &right);
-  int addr_index;
-  int ip_array[4];
+  std::array<int, 4> ip_array{};
 };
 
-void setIp(const adr::string_vector &s_ip, std::vector<address> &d_id,
-           int index);
+using address_vector = std::vector<address>;
 
-void print_ip(address &ip);
+void setIp(const adr::string_vector &s_ip, address_vector &d_id, int index);
 
-void merge_sort(std::vector<address> &arr, int left_index, size_t size);
+void print_ip(const adr::address &ip);
 
-std::vector<adr::address> filter(std::vector<address> &arr, int first);
-std::vector<adr::address> filter(std::vector<address> &arr, int first,
-                                 int second);
-std::vector<adr::address> filter_any(std::vector<address> &arr, int first);
+void merge_sort(address_vector &arr, int left_index, size_t size);
+
+address_vector filter(const address_vector &arr, int first);
+address_vector filter(const address_vector &arr, int first, int second);
+address_vector filter_any(const address_vector &arr, int first);
 
 } // namespace adr

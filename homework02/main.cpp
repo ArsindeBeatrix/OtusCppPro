@@ -27,7 +27,7 @@ int main(int argc, char const *argv[]) {
     for (auto ip : ip_pool) {
       adr::setIp(const_cast<adr::string_vector &>(ip),
                  const_cast<std::vector<adr::address> &>(ip_v4), index);
-      ip_v4[index].addr_index = index;
+      // ip_v4[index].addr_index = index;
       ++index;
     }
 
