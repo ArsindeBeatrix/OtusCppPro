@@ -18,7 +18,6 @@ int main(int argc, char const *argv[]) {
     }
     in.close();
 
-    // TODO reverse lexicographically sort
     std::cout << "------- Reverse lexicographically sort -----\n";
     const size_t ip_pool_size = ip_pool.size();
 
@@ -28,7 +27,7 @@ int main(int argc, char const *argv[]) {
     for (auto ip : ip_pool) {
       adr::setIp(const_cast<adr::string_vector &>(ip),
                  const_cast<std::vector<adr::address> &>(ip_v4), index);
-      ip_v4[index].addr_index = index;
+      // ip_v4[index].addr_index = index;
       ++index;
     }
 
